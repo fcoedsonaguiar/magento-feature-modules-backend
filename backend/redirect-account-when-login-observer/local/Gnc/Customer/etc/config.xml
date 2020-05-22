@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gnc_Customer>
+            <version>0.0.1</version>
+        </Gnc_Customer>
+    </modules>
+
+    <global>
+        <models>
+            <gnc_customer>
+                <class>Gnc_Customer_Model</class>
+            </gnc_customer>
+        </models>
+    </global>
+
+    <frontend>
+        <events>
+            <customer_login>
+                <observers>
+                    <gnc_customer_customer_login>
+                        <type>model</type>
+                        <class>gnc_customer/observer</class>
+                        <method>customerLogin</method>
+                    </gnc_customer_customer_login>
+                </observers>
+            </customer_login>
+        </events>
+    </frontend>
+
+</config>

@@ -1,0 +1,116 @@
+<?php
+/**
+ * Shoping cart sidebar
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ * @see Mage_Catalog_Block_Product_Price
+ */
+
+/**
+ * variebles
+ */
+    $shoppingCartEnable = $this->isPossibleOnepageCheckout();
+    $getSummaryCount = $this->getSummaryCount(); //quantidade de item atual do carrinho
+    $cartImage = $this->getSkinUrl('images/cart-items.svg');
+    $cartOnRight = $this->getSkinUrl('images/cart-on-right.svg');
+    $removeProductImage = $this->getSkinUrl('images/remove-product.png');
+?>
+
+<?php if ($shoppingCartEnable):
+        $cart = Mage::getModel('checkout/cart')->getQuote();
+        $cartItems = $cart->getAllItems();
+        $getUnitItem = $cart->getItemsCount();
+        $recentItems = $cart->getRecentItems();
+        $itemsTotalPrice = $this->helper('checkout')->formatPrice($cart->getSubtotal(), 2);
+        ?>
+<div class="cart-component">
+    <a class="cart-btn">
+        <img class="cart-image" src="<?php echo $cartImage ?>">
+        <div class="qty-products">
+            <?php echo $getUnitItem ?>
+        </div>
+    </a>
+<div id="hover-cart" class="hideCart">
+    <a class="buttonHide">
+        <img class="image" src="<?php echo $cartOnRight ?>">
+    </a>
+<div class="content">
+    <?php
+        if (!($cartItems)):?>
+        <div class="msg-no-products">
+            <span> Sem produtos no momento! </span>
+        </div>
+        <?php else: ?>
+        <?php
+            foreach ($cartItems as $item):
+                $productImage = Mage::getModel('catalog/product')->getImageUrl($item);
+                $itemPrice = $this->helper('checkout')->formatPrice(($item->getPrice() * $item->getQty()));
+                $regularProductPriceCart = Mage::helper('checkout')->formatPrice($item->getProduct()->getPrice(), 2);
+                ?>
+                <div class="product">
+                    <div class="col-item-1">
+                        <div class="name">
+                            <?php echo $item->getName() ?>
+                        </div>
+                    </div>
+                    <div class="col-item-2">
+                        <div class="ProductImage">
+                            <img class="image" src="<?php echo $productImage; ?>"/>
+                        </div>
+                        <div class="removeItem">
+                            <a>
+                                <img class="image" src="<?php echo $removeProductImage; ?>" ></a>
+                        </div>
+                    </div>
+                    <div class="col-item-3">
+                        <div class="qty-btn">
+                            <div class="qty-input">
+                                <input class="input"  type="text" name="qty" maxlength="12" value="<?php echo $item->getQty(); ?>" title="" />
+                            </div>
+                            <div class="qty-inc-dec">
+                                <a class="increment" onclick="incrementQty()">+</a>
+                                <a class="decrement" onclick="decrementQty()">-</a>
+                            </div>
+                        </div>
+                        <div class="prices">
+                            <span class="regular-price-cart">
+                                <?php echo $regularProductPriceCart; ?>
+                            </span>
+
+                            <span class="price-promotion">
+                                <?php if($item->getQty() > 1): ?>
+                                    <?php
+                                    if($item->getQty() > 1) {
+                                        $itemPricePromotion = $this->helper('checkout')->formatPrice(($item->getPrice() * $item->getQty()) - 20);
+                                        echo $itemPricePromotion;
+                                        echo "<span class='discount'> -20</span>";
+                                    } ?>
+                                <?php else: echo $itemPrice; ?>
+                                <?php endif; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
+        <div class="checkout">
+            <div class="btn">
+                <a href="#"> Finalizar compra </a>
+            </div>
+            <div class="amount">
+                <?php echo "Total ". $itemsTotalPrice; ?>
+            </div>
+        </div>
+        <div class="product cart-template" style="display: none">
+            <div class="col-item-1"><div class="name"></div></div>
+            <div class="col-item-2"><div class="image"><img src="" class="product-image"/></div><div class="remove-item"><a><img src="<?php echo $removeProductImage; ?>" ></a></div></div>
+            <div class="col-item-3">
+                <div class="qty-btn">
+            <input class="input-text"  type="text" name="qty" maxlength="12" value="" title="" /><div class="qty-inc-dec">
+            <a class="increment" onclick="incrementQty()">+</a><a class="decrement" onclick="decrementQty()">-</a></div></div>
+            <div class="prices"><span class="regular-price-cart"></span><span class="price-promotion"></span></div></div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

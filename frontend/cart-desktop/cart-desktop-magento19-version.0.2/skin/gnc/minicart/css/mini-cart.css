@@ -1,0 +1,243 @@
+/*
+	Mini Cart
+*/
+.cart-component {
+	max-width: 50px;
+	margin: auto;
+}
+
+.cart-component a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.cart-component .cart-btn {
+	border: none;
+	height: 40px;
+	display: flex;
+	color: #BE0000;
+	border-radius: 5px;
+	align-items: center;
+	background: transparent;
+	flex-flow: column-reverse;
+}
+
+.cart-component .cart-btn:hover {
+	opacity: 1;
+	transition: .1s;
+	color: rgba(190, 0, 0, .8);
+	background: rgba(190, 0, 0, .2);
+}
+
+.cart-component .cart-image {
+	width: 25px;
+	margin: -8px 3px 5px 0;
+}
+
+.cart-component .qty-products {
+	border-radius: 50%;
+	padding: 1px 2px 1px 2px;
+}
+
+.showCart {
+	top: 0;
+    right: 0;
+	transform: translateX(0%);
+}
+
+.hideCart {
+	top: 0;
+    right: -1px;
+	transform: translateX(120%);
+}
+/*
+	Cart Content
+*/
+#hover-cart .buttonHide {
+	top: 82px;
+	width: 40px;
+	height: 35px;
+	right: 311px;
+	display: flex;
+	background: #fff;
+	position: absolute;
+	align-items: center;
+	border-radius: 2px 0 0 2px;
+	border-top: .1em solid #c4c4c4;
+	border-left: .1em solid #c4c4c4;
+	border-bottom: .1em solid #c4c4c4;
+}
+
+#hover-cart .buttonHide .image {
+	width: 40px;
+	height: 21px;
+}
+
+#hover-cart {
+	width: 100%;
+	z-index: 9999;
+	display: flex;
+	height: 100vh;
+	position: fixed;
+	max-width: 310px;
+	background: #FFF;
+	font-weight: bold;
+	flex-direction: column;
+	border-left: .1em solid #c4c4c4;
+	transition: transform 300ms linear;
+}
+
+#hover-cart .content {
+	height: 100%;
+	padding: 10px;
+}
+
+#hover-cart .content .msg-no-products {
+	padding: 40px;
+	text-align: center;
+}
+
+#hover-cart .content .product {
+	display: grid;
+	font-size: 16px;
+	margin-bottom: 15px;
+	background: #F8F8F8;
+}
+
+#hover-cart .content .product .name {
+	margin: 10px;
+	text-align: center;
+}
+
+#hover-cart .content .product img {
+	width: 90px;
+}
+
+#hover-cart a {
+	color: #FFF;
+}
+
+#hover-cart .content .product .col-item-1 {
+	margin: 5px;
+	display: inline-flex;
+}
+
+#hover-cart .content .product .col-item-1 .removeItem .image {
+	width: 17px;
+	height: 17px;
+}
+
+#hover-cart .content .product .col-item-2 {
+	margin: 5px;
+	display: flex;
+}
+
+#hover-cart .content .product .col-item-2 .ProductImage {
+	flex: 1;
+	display: inline-flex;
+	justify-content: center;
+}
+
+#hover-cart .content .product .col-item-2 .ProductImage .image {
+	width: 90px;
+	margin: 5px;
+	height: 90px;
+	border-radius: 2px;
+}
+
+
+
+.col-item-3 {
+	display: flex;
+	margin: 5px 0 8px 0;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.col-item-3 .qty-btn {
+	width: 100%;
+	display: grid;
+	grid: 44px / 1fr 1fr;
+	max-width: 52px;
+	max-height: 50px;
+	text-align: center;
+	height: 100%;
+	background: #BE0000;
+	border: 1px solid #c4c4c4;
+}
+
+.col-item-3 .qty-btn .qty-input {
+	display: flex;
+}
+
+.col-item-3 .qty-btn .qty-input .input {
+	width: 26px;
+	border: none;
+	text-align: center;
+}
+
+.col-item-3 .qty-btn .qty-inc-dec {
+	border-left: 1px solid #c4c4c4;
+}
+
+.col-item-3 .qty-btn .qty-inc-dec .increment {
+	border-bottom: 1px solid #c4c4c4;
+}
+
+.col-item-3 .qty-btn .qty-inc-dec a {
+	display: flex;
+	justify-content: center;
+}
+
+#hover-cart .content .product .col-item-3 .prices {
+	display: flex;
+	flex-direction: column;
+}
+
+#hover-cart .content .product .col-item-3 .prices .price-promotion {
+    width: 85px;
+	display: flex;
+}
+
+#hover-cart .content .product .col-item-3 .prices .regular-price-cart {
+	color: #a7a7a7;
+	font-size:16px;
+	font-weight:bold;
+	text-decoration: line-through;
+}
+
+#hover-cart .content .product .col-item-3 .prices .price-promotion .discount {
+	color: #4dc228;
+	font-size: 10px;
+}
+
+#hover-cart .checkout {
+	display: none;
+	align-items: center;
+	border-top: 1px solid #a7a7a7;
+    box-shadow: 0px -4px 8px -8px;
+	justify-content: space-evenly;
+}
+
+#hover-cart .checkout .btn, .amount {
+	padding: 6px;
+    margin: 10px 27px 10px 0px;
+}
+
+#hover-cart .checkout .btn a {
+	background: #333;
+	border-radius: 3px;
+	padding: 12px 10px 12px 10px;
+}
+
+#hover-cart .checkout .btn a:hover {
+	opacity: 1;
+	background: rgba(10, 171, 84, 1);
+}
+
+#hover-cart .checkout .amount {
+	color: #333;
+	font-size: 18px;
+	max-width: 70px;
+	text-align: center;
+}

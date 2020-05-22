@@ -1,0 +1,57 @@
+<?php
+    $removeProductImage = $this->getSkinUrl('images/remove-product.png');
+    $cart = Mage::getModel('checkout/cart')->getQuote();
+    $cartItems = $cart->getAllItems();
+    $itemsTotalPrice = $this->helper('checkout')->formatPrice($cart->getSubtotal(), 2);
+?>
+<?php
+    foreach ($cartItems as $item):
+        $productImage = Mage::getModel('catalog/product')->getImageUrl($item);
+        $itemPrice = $this->helper('checkout')->formatPrice(($item->getPrice() * $item->getQty()));
+        $regularProductPriceCart = Mage::helper('checkout')->formatPrice($item->getProduct()->getPrice(), 2);
+    ?>
+    <div class="product">
+        <div class="col-item-1">
+            <div class="name">
+                <?php echo $item->getName() ?>
+            </div>
+            <div id="removeItem" class="removeItem">
+                <a title="Retirar do carrinho">
+                    <img class="image" src="<?php echo $removeProductImage; ?>" >
+                </a>
+            </div>
+        </div>
+        <div class="col-item-2">
+            <div class="ProductImage">
+                <img class="image" src="<?php echo $productImage; ?>"/>
+            </div>
+        </div>
+        <div class="col-item-3">
+            <div class="qty-btn">
+                <div class="qty-input">
+                    <input class="input"  type="text" name="qty" maxlength="12" value="<?php echo $item->getQty(); ?>" title="" />
+                </div>
+                <div class="qty-inc-dec">
+                    <a class="increment" onclick="incrementQty()">+</a>
+                    <a class="decrement" onclick="decrementQty()">-</a>
+                </div>
+            </div>
+            <div class="prices">
+                <span class="regular-price-cart">
+                    <?php echo $regularProductPriceCart;
+                ?>
+                </span>
+                <span class="price-promotion">
+                    <?php
+                        if($item->getQty() > 1):
+                        echo $this->helper('checkout')->formatPrice(($item->getPrice() * $item->getQty()) - 20);
+                        echo "<span class='discount'> -20 </span>";
+
+                        else: echo $itemPrice;
+                    ?>
+                    <?php endif; ?>
+                </span>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>

@@ -1,0 +1,49 @@
+<?php
+/**
+ * Shoping cart sidebar
+ *
+ */
+    $shoppingCartEnable = $this->isPossibleOnepageCheckout();
+    $cartImage = $this->getSkinUrl('images/cart-items.svg');
+    $cartOnRight = $this->getSkinUrl('images/cart-on-right.svg');
+?>
+
+<?php if ($shoppingCartEnable):
+    $cart = Mage::getModel('checkout/cart')->getQuote();
+    $cartItems = $cart->getAllItems();
+    $getUnitItem = $cart->getItemsCount();
+    $recentItems = $cart->getRecentItems();
+    $itemsTotalPriceWithTax = Mage::helper('checkout')->formatPrice(Mage::getModel('checkout/cart')->getQuote()->getGrandTotal());
+    ?>
+    <div class="cart-component">
+        <a class="cart-btn">
+            <img class="cart-image" src="<?php echo $cartImage ?>">
+            <div class="qty-products">
+                <?php echo $getUnitItem ?>
+            </div>
+        </a>
+        <div id="hover-cart" class="hideCart">
+            <a class="buttonHide">
+                <img class="image" src="<?php echo $cartOnRight ?>">
+            </a>
+            <div class="content">
+                <?php
+                if (!($cartItems)): ?>
+                    <div class="msg-no-products">
+                        <span> Sem produtos no momento! </span>
+                    </div>
+                <?php else:
+                    echo $this->getChildHtml('showItemsCart');
+                <?php endif; ?>
+            </div>
+            <div class="checkout">
+                <div class="btn">
+                    <a href="#"> Finalizar compra </a>
+                </div>
+                <div class="amount">
+                    <?php echo "Total ". $itemsTotalPriceWithTax; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

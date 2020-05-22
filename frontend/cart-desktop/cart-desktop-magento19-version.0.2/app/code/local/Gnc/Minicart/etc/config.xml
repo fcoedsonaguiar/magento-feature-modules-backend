@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gnc_Minicart>
+            <version>0.0.1</version>
+        </Gnc_Minicart>
+    </modules>
+    <frontend>
+        <routers>
+            <Gnc_Minicart>
+                <use>standard</use>
+                <args>
+                    <module>Gnc_Minicart</module>
+                    <frontName>minicart</frontName>
+                </args>
+            </Gnc_Minicart>
+        </routers>
+        <layout>
+            <updates>
+                <Gnc_Minicart module="Gnc_Minicart">
+                    <file>gnc_minicart.xml</file>
+                </Gnc_Minicart>
+            </updates>
+        </layout>
+    </frontend>
+</config>

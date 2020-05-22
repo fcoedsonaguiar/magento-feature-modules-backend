@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout version="1.4.0">
+    <default>
+        
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>gnc/minicart/js/mini-cart.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>gnc/minicart/js/mini-cart-toggle.js</name>
+            </action>
+
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>gnc/minicart/css/mini-cart.css</name>
+            </action>
+        </reference>
+
+        <reference name="cart_sidebar">
+            <action method="setTemplate">
+                <template>gnc/minicart/minicart.phtml</template>
+            </action>
+        </reference>
+
+    </default>
+</layout> 
