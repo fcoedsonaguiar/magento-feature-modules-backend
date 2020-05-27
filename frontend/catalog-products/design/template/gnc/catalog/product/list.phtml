@@ -1,0 +1,65 @@
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+    $productCollection = $this->getLoadedProductCollection();
+    $helper = $this->helper('catalog/output');
+?>
+
+<div class="mainContainer">
+    <div class="title">
+        oi
+    </div>
+    <div class="catalogAndProducts">
+<!--    --><?php //if (!$productCollection()): ?>
+        <div class="msgNoProducts" style="display: none">
+            <span> Sem produtos no momento! </span>
+        </div>
+<!--    --><?php //else: ?>
+    <div class="menuTitles">
+        <div class="productId"></div>
+        <div class="productName"></div>
+        <div class="productSku"></div>
+        <div class="productPrice"></div>
+        <div class="productFinalPrice"></div>
+        <div class="productStatus"></div>
+    </div>
+    <div class="itemList">
+<!--        --><?php //foreach ($productCollection as $product):
+//
+//        ?>
+        <div clas="product">
+            <div class="id">
+<!--                --><?php //echo $product->getSku() ?>
+            </div>
+            <div class="productImageAndName">
+                <div class="image">
+<!--                    <img src="--><?php //echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(60); ?><!--"-->
+<!--                         alt="--><?php //echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?><!--"-->
+                </div>
+                <div class="name">
+<!--                    --><?php //$product->getName(); ?>
+                </div>
+            </div>
+            <div class="sku">
+<!--                --><?php //echo $product->getSku() ?>
+            </div>
+            <div class="price">
+<!--                --><?php //echo $this->getPriceHtml($product, true) ?>
+            </div>
+            <div class="finalPrice">
+<!--                --><?php //echo number_format($product->getFinalPrice(), 2, ',', '.') ?>
+            </div>
+            <div class="status">
+<!--                --><?php //echo $product->getSku() ?>
+            </div>
+        </div>
+<!--        --><?php //endforeach; ?>
+    </div>
+<!--    --><?php //endif; ?>
+        <div class="categoryList">
+
+    </div>
+</div>

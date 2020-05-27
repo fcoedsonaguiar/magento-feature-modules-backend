@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_index_index>
+
+            <block type="page/head" name="head">
+<!--                <action method="addJs"><script>script.js</script></action>-->
+<!--                <action method="addItem"><type>js</type><name>script2.js</name></action>-->
+                <action method="addItem">
+                    <type>skin_css</type>
+                    <name>gnc/catalog/css/catalog.css</name>
+                </action>
+            </block>
+
+        <reference name="content">
+            <block type="catalog/product_list" name="product_list" template="gnc/catalog/product/list.phtml"/>
+        </reference>
+    </catalog_index_index>
+</layout>
